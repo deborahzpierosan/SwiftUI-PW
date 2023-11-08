@@ -19,6 +19,7 @@
 		6E4031822AF92DE800633FB9 /* PageActors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E4031752AF92DE800633FB9 /* PageActors.swift */; };
 		6E4031832AF92DE800633FB9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6E4031772AF92DE800633FB9 /* Preview Assets.xcassets */; };
 		6E4031842AF92DE800633FB9 /* ActorRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E4031782AF92DE800633FB9 /* ActorRow.swift */; };
+		6EFE89D22AFBC9D300820572 /* MoviesSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFE89D12AFBC9D300820572 /* MoviesSearchBar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,7 @@
 		6E4031772AF92DE800633FB9 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		6E4031782AF92DE800633FB9 /* ActorRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActorRow.swift; sourceTree = "<group>"; };
 		6E9787142AEA9DA100C5F768 /* Swift UI PW.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Swift UI PW.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6EFE89D12AFBC9D300820572 /* MoviesSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesSearchBar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +85,7 @@
 				6E4031732AF92DE800633FB9 /* MovieRow.swift */,
 				6E40316F2AF92DE800633FB9 /* Nowplaying.swift */,
 				6E4031752AF92DE800633FB9 /* PageActors.swift */,
+				6EFE89D12AFBC9D300820572 /* MoviesSearchBar.swift */,
 				6E4031762AF92DE800633FB9 /* Preview Content */,
 				6E40316C2AF92DE800633FB9 /* Swift_UI_PWApp.swift */,
 				6E4031712AF92DE800633FB9 /* SwiftUIView.swift */,
@@ -163,6 +166,7 @@
 			files = (
 				6E40317D2AF92DE800633FB9 /* TabView2.swift in Sources */,
 				6E4031822AF92DE800633FB9 /* PageActors.swift in Sources */,
+				6EFE89D22AFBC9D300820572 /* MoviesSearchBar.swift in Sources */,
 				6E40317A2AF92DE800633FB9 /* ContentView.swift in Sources */,
 				6E40317C2AF92DE800633FB9 /* Nowplaying.swift in Sources */,
 				6E40317B2AF92DE800633FB9 /* Actor.swift in Sources */,

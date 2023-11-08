@@ -17,91 +17,110 @@ struct ContentView: View {
         Movie(title: "Meu Amigo Totoro", description: "Mei é uma jovem que encontra uma pequena passagem em seu quintal, que a leva à um lendário espírito da floresta conhecido como Totoro. Sua mãe está no hospital e seu pai divide o tempo entre dar aulas na faculdade e cuidar de sua mulher doente. Quando Mei tenta visitar a mãe por conta própria, se perde na floresta e só o grande e fofo Totoro pode ajudar a menina a achar o caminho de volta para casa.", image: "totoro", rating: "8.3")
     ]
     
+    @Environment(\.dismiss) var dismiss
+    @State var tap: Bool = false
+    @State private var text: String = ""
+    
+    var filteredMovies: [Movie] {
+        if text.isEmpty {
+            return movie
+        }else {
+            return movie.filter({$0.title.lowercased().contains(text.lowercased())})
+        }
+    }
+    
     var body: some View {
-        VStack {
+        NavigationStack {
+            VStack {
+                //            HStack {
+                //                Text("MovieDB")
+                //                    .font(.largeTitle)
+                //                    .bold()
+                //                    .padding(.leading)
+                //                Spacer()
+                //            }
+                
+                if text.isEmpty {
+                    VStack {
+                        HStack {
+                            Text("Now Playing")
+                                .font(.subheadline)
+                                .bold()
+                                .padding(.leading)
+                            Spacer()
+                        }
+                        
+                        ScrollView(.horizontal) {
+                            HStack(spacing: 15) {
+                                ForEach(movie, id:\.description){
+                                    movie in
+                                    
+                                    VStack(){
+                                        HStack() {
+                                            Image(movie.image)
+                                                .resizable()
+                                                .scaledToFit()
+                                                .cornerRadius(10)
+                                                .frame(width: 150)
+                                        }
+                                        HStack {
+                                            Text(movie.title)
+                                                .bold()
+                                                .font(.footnote)
+                                            Spacer()
+                                        }
+                                        
+                                        HStack{
+                                            Image(systemName: "star")
+                                                .resizable()
+                                                .scaledToFit()
+                                                .frame(width: 15)
+                                                .foregroundColor(.gray)
+                                            
+                                            Text(movie.rating)
+                                                .foregroundColor(.gray)
+                                                .font(.subheadline)
+                                                .baselineOffset(-1)
+                                            Spacer()
+                                        }
+                                        
+                                    }
+                                    
+                                    
+                                    
+                                }
+                            }.padding()
+                        }
+                        
+                    }
+                    Spacer()
+                }
+            }
             HStack {
-                Text("MovieDB")
-                    .font(.largeTitle)
+                Text("Popular Movies")
+                    .font(.subheadline)
                     .bold()
                     .padding(.leading)
                 Spacer()
             }
-            VStack {
-                HStack {
-                    Text("Now Playing")
-                        .font(.subheadline)
-                        .bold()
-                    .padding(.leading)
-                    Spacer()
-                }
-                
-                ScrollView(.horizontal) {
-                    HStack(spacing: 15) {
-                        ForEach(movie, id:\.description){
-                            movie in
-                            
-                            VStack(){
-                                HStack() {
-                                    Image(movie.image)
-                                        .resizable()
-                                        .scaledToFit()
-                                        .cornerRadius(10)
-                                    .frame(width: 150)
-                                }
-                                HStack {
-                                    Text(movie.title)
-                                        .bold()
-                                        .font(.footnote)
-                                    Spacer()
-                                }
-                                
-                                HStack{
-                                    Image(systemName: "star")
-                                        .resizable()
-                                        .scaledToFit()
-                                        .frame(width: 15)
-                                        .foregroundColor(.gray)
-                                        
-                                    Text(movie.rating)
-                                        .foregroundColor(.gray)
-                                        .font(.subheadline)
-                                        .baselineOffset(-1)
-                                    Spacer()
-                                }
-                                    
-                            }
-                           
-
-                            
+            List(filteredMovies, id: \.title){ movie in
+                MovieViewRow(movie: movie)
+                    .swipeActions(edge:.trailing,allowsFullSwipe: false){
+                        Button {
+                            movie.liked.toggle()
+                        } label: {
+                            Label("Favorite", systemImage: "heart")
+                                .tint(.red)
                         }
-                    }.padding()
-                }
+                    }
+                    .listRowSeparator(.hidden)
                 
             }
-            Spacer()
-        }
-        HStack {
-            Text("Popular Movies")
-                .font(.subheadline)
-                .bold()
-                .padding(.leading)
-            Spacer()
-        }
-        List(movie, id: \.title){movie in
-            MovieViewRow(movie: movie)
-                .swipeActions(edge:.trailing,allowsFullSwipe: false){
-                    Button {
-                        movie.liked.toggle()
-                    } label: {
-                        Label("Favorite", systemImage: "heart")
-                            .tint(.red)
-                    }
-                }
-                .listRowSeparator(.hidden)
+            .listStyle(.plain)
             
+            .navigationTitle("MovieDB")
+            .searchable(text: $text)
         }
-        .listStyle(.plain)
-        
     }
 }
 
